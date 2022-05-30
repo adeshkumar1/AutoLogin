@@ -1,12 +1,14 @@
 import tkinter as tk
-from tkinter import filedialog, Text
+from tkinter import filedialog
 import os
 import subprocess
 import time
 import pyautogui
 from functools import partial
+from tkinter.constants import *
 
 root = tk.Tk()
+root.iconbitmap('C:\\Users\\ohqa2\\Downloads\\icon.ico')
 root.title('Valorant Account Selector')
 Loc = 0
 accounts = []
@@ -52,13 +54,11 @@ def poo(use):
 
 
 
-canvas = tk.Canvas(root, height = 700, width = 500, bg = "#263D42")
+canvas = tk.Canvas(root, height = 700, width = 500, bg = "#AA0000")
 canvas.pack()
 
-frame = tk.Frame(root, bg = "white")
-frame.place(relwidth = 0.8, relheight = 0.8,relx = 0.1,rely=0.1)
-
-
+frame = tk.Frame(root, bg = "red")
+frame.place(relwidth = 0.8, relheight = 0.7,relx = 0.1,rely=0.1)
 
 
 
@@ -68,7 +68,7 @@ name_entry = tk.Entry(root,textvariable = user, font=('calibre',10,'normal'))
 passw_label = tk.Label(root, text = 'Password', font = ('calibre',10,'bold'))
 passw_entry=tk.Entry(root, textvariable = pas, font = ('calibre',10,'normal'), show = '*')
 
-Submit=tk.Button(root,text = 'Submit', command = submit)
+Submit=tk.Button(root,text = 'Submit',font=('calibre',10, 'bold'), command = submit)
 
 name_label.pack()
 name_entry.pack()
@@ -78,7 +78,7 @@ Submit.pack()
 
 for account in accounts:
     action = partial(poo, account)
-    label = tk.Button(frame, text = account,command = action)
+    label = tk.Button(frame, text = account,font=('calibre',10, 'bold'),command = action)
     label.pack()
 
 if Loc == 0:
