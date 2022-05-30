@@ -4,6 +4,7 @@ import os
 import subprocess
 import time
 import pyautogui
+from functools import partial
 
 root = tk.Tk()
 root.title('Valorant Account Selector')
@@ -37,10 +38,17 @@ def login(username,password):
     pyautogui.moveTo(330,920)
     pyautogui.click()   
 def submit():
-    account = tk.Button(frame, text = user.get())
+    action = partial(poo,(user.get() + ' ' + pas.get()))
+    account = tk.Button(frame, text = (user.get() + ' ' + pas.get()), command = action)
     account.pack()
-    accounts.append(user.get() + ' '+ pas.get())
     
+    accounts.append(user.get() + ' '+ pas.get())
+def poo(use):
+    for i in range(len(use) - 2 ):
+        if use[i] == ' ' :
+            first = use[:i]
+            last = use[i+1:]
+    login(username = first,password = last)  
 
 
 
@@ -60,16 +68,17 @@ name_entry = tk.Entry(root,textvariable = user, font=('calibre',10,'normal'))
 passw_label = tk.Label(root, text = 'Password', font = ('calibre',10,'bold'))
 passw_entry=tk.Entry(root, textvariable = pas, font = ('calibre',10,'normal'), show = '*')
 
-sub_btn=tk.Button(root,text = 'Submit', command = submit)
+Submit=tk.Button(root,text = 'Submit', command = submit)
 
 name_label.pack()
 name_entry.pack()
 passw_label.pack()
 passw_entry.pack()
-sub_btn.pack()
+Submit.pack()
 
 for account in accounts:
-    label = tk.Button(frame, text = account)
+    action = partial(poo, account)
+    label = tk.Button(frame, text = account,command = action)
     label.pack()
 
 if Loc == 0:
@@ -86,4 +95,4 @@ with open('sve.txt', 'w') as f:
     for account in accounts:
         f.write(account+',')
 
-    
+        
