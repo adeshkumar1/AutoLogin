@@ -40,12 +40,12 @@ def login(username,password):
     pyautogui.moveTo(330,920)
     pyautogui.click()   
 def submit():
-    action = partial(poo,(user.get() + ' ' + pas.get()))
+    action = partial(foo,(user.get() + ' ' + pas.get()))
     account = tk.Button(frame, text = (user.get() + ' ' + pas.get()), command = action)
     account.pack()
     
     accounts.append(user.get() + ' '+ pas.get())
-def poo(use):
+def foo(use):
     for i in range(len(use) - 2 ):
         if use[i] == ' ' :
             first = use[:i]
@@ -77,7 +77,7 @@ passw_entry.pack()
 Submit.pack()
 
 for account in accounts:
-    action = partial(poo, account)
+    action = partial(foo, account)
     label = tk.Button(frame, text = account,font=('calibre',10, 'bold'),command = action)
     label.pack()
 
